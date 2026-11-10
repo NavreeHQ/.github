@@ -1,0 +1,76 @@
+name: Bug report
+description: Something does not work the way the documentation says it should.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for the report. If this is a security problem, do not file it here:
+        use the repository's Security tab or write to security@navree.com.
+  - type: input
+    id: component
+    attributes:
+      label: Crate, package or tool
+      description: Where the bug is, if you know. For example `navree-http`, `@navree/client` or the `navree` command.
+    validations:
+      required: false
+  - type: input
+    id: version
+    attributes:
+      label: Navree version
+      description: The version in your `Cargo.lock`, for example `1.0.0`.
+      placeholder: 1.0.0
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: Ubuntu 24.04, macOS 15, Windows 11
+    validations:
+      required: true
+  - type: input
+    id: rust
+    attributes:
+      label: Rust version
+      description: The output of `rustc --version`.
+      placeholder: rustc 1.95.0
+    validations:
+      required: true
+  - type: textarea
+    id: features
+    attributes:
+      label: Enabled features
+      description: The features of `navree` (and any other Navree crate) you turn on, as they appear in your `Cargo.toml`.
+      placeholder: navree = { version = "1", features = ["postgres", "auth"] }
+      render: toml
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you did and what you saw.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: The smallest code, request or steps that show the bug. A link to a small repository works too.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs and errors
+      description: Error messages, backtraces and relevant log lines. Remove secrets first.
+      render: text
+    validations:
+      required: false

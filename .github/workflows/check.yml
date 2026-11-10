@@ -1,0 +1,38 @@
+# Checks that the issue forms and the other YAML files in this repository parse,
+# and that the forms have the fields GitHub requires.
+name: Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  forms:
+    name: Issue forms
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Parse every YAML file and check the forms
+        run: |
+          python3 - <<'PY'
+          import glob, sys, yaml
+
+          failed = False
+          for path in sorted(glob.glob("**/*.yml", recursive=True) + glob.glob(".github/**/*.yml", recursive=True)):
+              with open(path, encoding="utf-8") as handle:
+                  data = yaml.safe_load(handle)
+              if path.startswith("ISSUE_TEMPLATE/") and not path.endswith("config.yml"):
+                  for key in ("name", "description", "body"):
+                      if key not in data:
+                          print(f"{path}: missing {key}")
+                          failed = True
+              print(f"ok {path}")
+          sys.exit(1 if failed else 0)
+          PY
