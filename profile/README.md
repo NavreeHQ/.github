@@ -13,6 +13,8 @@
   <a href="https://crates.io/crates/navree"><b>crates.io</b></a>
   &nbsp;·&nbsp;
   <a href="https://github.com/NavreeHQ/navree/discussions"><b>Discussions</b></a>
+  &nbsp;·&nbsp;
+  <a href="https://github.com/sponsors/boparaiamrit"><b>Sponsor</b></a>
 </p>
 
 ## Start here
